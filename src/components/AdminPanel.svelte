@@ -8,7 +8,7 @@
     <header class="p-3 bg-{color} flex-grow-0 flex-shrink-0">
         <div class="d-flex flex-row justify-content-between align-items-center">
             <div class="d-lg-none">
-                <button class="btn btn-outline-light py-2 px-3 border-0">
+                <button class="btn btn-outline-light py-2 px-3 border-0" data-bs-toggle="offcanvas" data-bs-target="#mobile-menu" aria-controls="mobile-menu">
                     <FontAwesomeIcon icon={faBars} fixedWidth />
                 </button>
             </div>
@@ -37,11 +37,34 @@
     </div>
 </div>
 
+<div class="offcanvas offcanvas-start bg-{color}" tabindex="-1" id="mobile-menu" aria-labelledby="mobile-menu-label" bind:this={offcanvasEl}>
+    <div class="offcanvas-header">
+        <h3 class="offcanvas-title text-light" id="mobile-menu-label">Menu</h3>
+        <button type="button" class="btn btn-outline-light btn-lg border-0" data-bs-dismiss="offcanvas" aria-label="Fechar">
+            <FontAwesomeIcon icon={faTimes} fixedWidth />
+        </button>
+    </div>
+    <div class="offcanvas-body px-0">
+        {#each links as link}
+            <a href={link.link} class="btn btn-{color} text-start w-100" on:click={() => closeMenu()}>
+                <FontAwesomeIcon icon={link.icon} fixedWidth /> { link.label }
+            </a>
+        {/each}
+    </div>
+</div>
+
 <script lang="ts">
-	import { faBars, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+	import { faBars, faSignOutAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 	import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
 	import type { IAdminSidebarLink } from "../interfaces/IAdminSidebarLink";
+	import { Offcanvas } from "bootstrap";
 
     export let color: string = "primary";
     export let links: IAdminSidebarLink[] = [];
+
+    let offcanvasEl: HTMLElement|null;
+
+    const closeMenu = () => {
+        Offcanvas.getInstance(offcanvasEl).hide();
+    }
 </script>
