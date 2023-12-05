@@ -28,6 +28,7 @@
             {:else}
             <div class="row mb-3">
                 <div class="col-12 col-lg-9">
+                    <h5>#{ task?.id }</h5>
                     <h3 class="fw-bold">{ task?.title }</h3>
                     <h4 class="text-secondary">Responsável: { task?.user?.first_name } { task?.user?.last_name }</h4>
                     <h4 class="text-secondary">Projeto: { task?.project?.label }</h4>

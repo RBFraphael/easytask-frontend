@@ -28,6 +28,7 @@
             {:else}
             <div class="row mb-3">
                 <div class="col-12">
+                    <h5>#{ user?.id }</h5>
                     <h3 class="fw-bold">{ user?.first_name } { user.last_name }</h3>
                     <h4 class="text-secondary">{ user.email }</h4>
                     <h4 class="text-secondary">{ UserRoleLabel(user.role) }</h4>

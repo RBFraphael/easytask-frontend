@@ -18,6 +18,7 @@
             {:else}
             <div class="row mb-3">
                 <div class="col-12">
+                    <h5>#{ project?.id }</h5>
                     <h3 class="fw-bold">{ project?.label }</h3>
                     <h4 class="text-secondary">Responsável: { project?.user?.first_name } { project?.user?.last_name }</h4>
                 </div>
